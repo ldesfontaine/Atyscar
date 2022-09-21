@@ -1,4 +1,6 @@
 function deleteClient(NumC) {
+    if (confirm("Voulez-vous vraiment supprimer ce client ?")) {
+    
     $.ajax({
         type: "POST",
         url: "deleteClient.php",
@@ -10,33 +12,14 @@ function deleteClient(NumC) {
             location.reload();
         }
       })
+    }
 }
 
 
 
 
-function updateClient(NumC) {
-    var Modal = document.getElementById("modalViewMore");
-    var pageContent = document.getElementById("page-content");
-    if (Modal.style.display == 'block') {
-        Modal.style.display = 'none';
-        pageContent.style.opacity = '1';
-        pageContent.style.userSelect = 'auto';
-    }
-    else {
-        Modal.style.display = 'block';
-        pageContent.style.opacity = '0.05';
-        pageContent.style.userSelect = 'none';
-        
-    }
-    
-}
-
-
-
-
-function showHideModal(NumC) {
-    var Modal = document.getElementById("modalViewMore");
+function showHideModalEdit(NumC) {
+    var Modal = document.getElementById("modalEditClient");
     var pageContent = document.getElementById("page-content");
     if (Modal.style.display == 'block') {
         Modal.style.display = 'none';
@@ -54,8 +37,55 @@ function showHideModal(NumC) {
                 NumC: NumC
             },
             dataType : "json", 
-            success: function (data) {
-                
+            success: function (data) {                
+                document.getElementById("numCEdit").value = data.NumC;
+                document.getElementById("nomEdit").value = data.NomC;
+                document.getElementById("prenomEdit").value = data.PrenomC;
+                document.getElementById("dateNaissanceEdit").value = data.DatNaisC;
+                document.getElementById("lieuNaissanceEdit").value = data.LieuNaisC;
+                document.getElementById("nationaliteEdit").value = data.NationaliteC
+                document.getElementById("villeEdit").value = data.AdrVilC;
+                document.getElementById("rueEdit").value = data.AdrRueC;
+                document.getElementById("codePostalEdit").value = data.CodPosC;
+                document.getElementById("telephoneEdit").value = data.TelC;
+                document.getElementById("numeroPassportEdit").value = data.NumPasC;
+                document.getElementById("dateDelivrancePassportEdit").value = data.DatDelPasC;
+                document.getElementById("lieuDelivrancePassportEdit").value = data.LieuDelPasC;
+                document.getElementById("paysDelivrancePassportEdit").value = data.PaysDelPasC;
+                document.getElementById("numeroPermisEdit").value = data.NumPermisC;
+                document.getElementById("dateDelivrancePermisEdit").value = data.DatDelPermiC;
+                document.getElementById("lieuDelivrancePermisEdit").value = data.LieuDelPermisC;
+                document.getElementById("autreAdresseEdit").value = data.AutreAdrC;
+                document.getElementById("remarquesEdit").value = data.RemarquesC;
+                document.getElementById("codTypCEdit").value = data.CodTypC;
+            }
+          })
+
+    }
+}
+
+
+function showHideModal(NumC) {
+    var Modal = document.getElementById("modalViewMore");
+    var pageContent = document.getElementById("page-content");
+
+    if (Modal.style.display == 'block') {
+        Modal.style.display = 'none';
+        pageContent.style.opacity = '1';
+        pageContent.style.userSelect = 'auto';
+
+    } else {
+        Modal.style.display = 'block';
+        pageContent.style.opacity = '0.05';
+        pageContent.style.userSelect = 'none';
+        $.ajax({
+            type: "POST",
+            url: "getDataClient.php",
+            data: { 
+                NumC: NumC
+            },
+            dataType : "json", 
+            success: function (data) {                
                 document.getElementById("nom").value = data.NomC;
                 document.getElementById("prenom").value = data.PrenomC;
                 document.getElementById("dateNaissance").value = data.DatNaisC;
@@ -77,6 +107,5 @@ function showHideModal(NumC) {
                 document.getElementById("codTypC").value = data.CodTypC;
             }
           })
-
     }
 }

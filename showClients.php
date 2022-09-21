@@ -24,11 +24,28 @@ require_once("registration/config.php");
     require_once("header.php");
     require_once("navbar.php");
     ?>
-
     
     <!-- create Modal -->
     <?php require("modalViewMore.php"); ?>
+    <?php require("modalEditClient.php"); ?>
 
+    <style>
+    #modalEditClient {
+        margin-top: 30%;
+        z-index: 999;
+        display:none;
+        border: 2px solid black;
+        width:400px;
+        height: max-content;
+        padding:5px;
+        font-size: 30px;
+        /* Position centre du modal */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    </style>
 
     <!-- fin modal -->
     <body>
@@ -66,7 +83,7 @@ require_once("registration/config.php");
                             echo '</td>';
                             echo '<td class="actionsClientsBox">';
                             echo '<button class="actionsClient" onclick="showHideModal('.$row['NumC'].')" title="Voir plus"><span class="material-symbols-outlined" style="color:rgb(42, 206, 105)">visibility</span></button>';
-                            echo '<button class="actionsClient" onclick="updateClient('.$row['NumC'].')" title="Modifier"><span class="material-symbols-outlined" style="color:rgb(50, 50, 255)">edit</span></button>';
+                            echo '<button class="actionsClient" onclick="showHideModalEdit('.$row['NumC'].')" title="Modifier"><span class="material-symbols-outlined" style="color:rgb(50, 50, 255)">edit</span></button>';
                             echo '<button class="actionsClient" onclick="deleteClient('.$row['NumC'].')" title="Supprimer"><span class="material-symbols-outlined" style="color:rgb(255, 0, 0)">delete</span></button>';
                             echo '</td>';
                         echo '</tr>';
