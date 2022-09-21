@@ -56,7 +56,7 @@ if (isset($_POST['numCEdit'])) {
     $stmt->execute();
     $stmt->close();
     $conn->close();
-    header("Location: showClients .php");
+    header("Location: showClients.php");
 
 }
 
