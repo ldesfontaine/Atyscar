@@ -1,6 +1,5 @@
 function deleteClient(NumC) {
     if (confirm("Voulez-vous vraiment supprimer ce client ?")) {
-    
     $.ajax({
         type: "POST",
         url: "deleteClient.php",

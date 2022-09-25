@@ -40,7 +40,12 @@ if (isset($_POST['username'])){
     if($nbRows == 1){
         $_SESSION['username'] = $username;
         $_SESSION['admin'] = $resAdmin;
-        header("Location: ../index.php");
+        if ($resAdmin == 1) {
+            header("Location: ../panel.php");
+        }
+        else{
+            header("Location: ../index.php");
+        }
     }else{
     $message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
     }
