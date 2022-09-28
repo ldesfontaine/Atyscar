@@ -1,5 +1,5 @@
 function deleteVoiture(MatV) {
-    if (confirm("Voulez-vous vraiment supprimer ce client ?")) {
+    if (confirm("Voulez-vous vraiment supprimer cette voiture ?")) {
     $.ajax({
         type: "POST",
         url: "deleteVoiture.php",
@@ -7,7 +7,7 @@ function deleteVoiture(MatV) {
             MatV: MatV
         },
         success: function () {
-            alert('Client supprimé');
+            alert('Voiture supprimé');
             location.reload();
         }
       })
